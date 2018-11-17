@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  graphql:
+    build: graphql
+    environment:
+      USER_SERVICE: druby://user_service:8787
+      COMMENT_SERVICE: druby://comment_service:8787
+    links:
+        - user_service
+        - comment_service
+    ports:
+      - 9292:9292
+
+  user_service:
+    build: user_service
+
+  comment_service:
+    build: comment_service

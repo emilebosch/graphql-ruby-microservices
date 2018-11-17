@@ -1,0 +1,16 @@
+type User {
+	name: String
+}
+
+type Comment {
+  comment: String
+}
+
+type Query {
+	users(search: String): [User]
+  comment(id: Int): Comment
+}
+
+type Mutation {
+	createUser(name: String!): String!
+}
