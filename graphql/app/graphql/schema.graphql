@@ -1,5 +1,5 @@
 type User {
-	name: String
+  name: String
 }
 
 type Comment {
@@ -7,10 +7,10 @@ type Comment {
 }
 
 type Query {
-	users(search: String): [User]
+  users(search: String): [User]
   comment(id: Int): Comment
 }
 
 type Mutation {
-	createUser(name: String!): String!
+  createUser(name: String!): String!
 }

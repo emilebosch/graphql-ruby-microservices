@@ -3,7 +3,7 @@ require 'drb/drb'
 url="druby://0.0.0.0:8787"
 
 class UserService
-	def get_users
+  def get_users
     [{name:"hello"},{name:"ok"}]
   end
   def get_user(id)
