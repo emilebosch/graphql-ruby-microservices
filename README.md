@@ -4,6 +4,12 @@ The simplest possible microservice architecture with ruby and graphql.
 
 Microservices are written in ruby with Distributed Ruby
 
+```
+docker-compose build
+docker-compose up
+open http://localhost/graphiql
+```
+
 Things to tackle:
 
 - Batch loading
