@@ -2,9 +2,15 @@
 
 I would recommend against microservices unless you really really really can't do otherwise. But if you have to, this might be the simplest approach.
 
-The simplest possible microservice architecture with ruby and graphql.
+The microservices itself are written in ruby with Distributed Ruby. Meaning you can call easy and fast the underlying microservices without any http layer.
 
-Microservices are written in ruby with Distributed Ruby. Meaning you can call easy and fast the underlying microservices.
+The setup is as follows:
+
+- User service for fetching users
+- Comment service for fetching comments
+- Graphql service as an umbrella
+
+All the services run in docker containers for easy building and deployment.
 
 To run the example:
 
@@ -32,7 +38,7 @@ docker-compose stop comment_service
 
 You'll see that you can still query the users but not the comments. The graphql just returns null for the comments. Query the services node to see which of the services is down.
 
-After thats put it back op and see that its instantly queriabble
+After thats put it back up and see that its instantly queryable!
 
 
 ```
