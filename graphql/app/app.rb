@@ -14,10 +14,15 @@ USER_SERVICE = DRbObject.new_with_uri(ENV['USER_SERVICE'])
 puts "Starting #{ENV['COMMENT_SERVICE']}"
 puts "Starting #{ENV['USER_SERVICE']}"
 
-class Query
+class User
+  def comments
+    COMMENT_SERVICE.get_comments
+  end
+end
 
+class Query
   def comment
-    COMMENT_SERVICE.get_comment(1)
+    COMMENT_SERVICE.get_comments(1)
   end
 
   def users
@@ -29,7 +34,14 @@ module TestAPI
   module Resolver
     def self.call(type, field, obj, args, ctx)
       case type.to_s
-      when 'Query', 'Mutation'
+      when 'User'
+        x = User.new
+        if x.respond_to? field.name.to_sym
+          x.public_send(field.name)
+        else 
+          obj[field.name.to_sym]
+        end
+      when 'Query'
         x = Query.new
         x.public_send(field.name)
       else
@@ -38,6 +50,8 @@ module TestAPI
         end
         obj.public_send(field.name)
       end
+    rescue
+      return nil
     end
   end
 

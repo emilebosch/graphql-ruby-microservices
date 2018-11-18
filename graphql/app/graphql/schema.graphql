@@ -1,5 +1,6 @@
 type User {
   name: String
+  comments: [Comment]
 }
 
 type Comment {

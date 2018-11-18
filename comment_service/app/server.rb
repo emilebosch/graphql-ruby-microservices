@@ -6,6 +6,9 @@ class CommentService
   def get_comment(id)
     {comment: "Comment {id} #{Time.now}"}
   end
+  def get_comments
+  	[{comment: "Comment {id} #{Time.now}"}]
+  end
 end
 
 $SAFE = 1

@@ -17,9 +17,27 @@ open http://localhost:9292/graphiql
 This is the absolute minimal example. 
 Things that you could added:
 
-- Batch loaders
+- Batch loading
+- Automatically eject slow services
 - Reconnecting after downtime of one of the services (this works!)
 - Multiplexing and connection pooling the services (https://github.com/mperham/connection_pool)
+
+## Scenarios:
+
+Simulate a service going down by putting the comment service down.
+
+```
+docker-compose stop comment_service
+```
+
+You'll see that you can still query the users but not the comments. The graphql just returns null for the comments. Query the services node to see which of the services is down.
+
+After thats put it back op and see that its instantly queriabble
+
+
+```
+docker-compose start comment_service
+```
 
 Notes:
 
