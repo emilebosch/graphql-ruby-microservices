@@ -49,10 +49,22 @@ Simulate a service going down by putting the comment service down.
 docker-compose stop comment_service
 ```
 
+And query the data again:
+
+```graphql
+{
+  users {
+    name
+    comments {
+      comment
+    }
+  }
+}
+```
+
 You'll see that you can still query the users but not the comments. The graphql just returns null for the comments. Query the services node to see which of the services is down.
 
-After thats put it back up and see that its instantly queryable!
-
+After thats put it back up:
 
 ```
 docker-compose start comment_service
