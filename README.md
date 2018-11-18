@@ -16,8 +16,21 @@ To run the example:
 
 ```
 docker-compose build
-docker-compose up
+docker-compose up -d
 open http://localhost:9292/graphiql
+```
+
+Then query the api:
+
+```graphql
+{
+  users {
+    name
+    comments {
+      comment
+    }
+  }
+}
 ```
 
 This is the absolute minimal example. 
