@@ -3,16 +3,16 @@ require "sinatra/json"
 require "graphql"
 require "yaml"
 
-require 'drb/drb'
-require 'benchmark'
+require "drb/drb"
+require "benchmark"
 
 DRb.start_service
 
-COMMENT_SERVICE = DRbObject.new_with_uri(ENV['COMMENT_SERVICE'])
-USER_SERVICE = DRbObject.new_with_uri(ENV['USER_SERVICE'])
+COMMENT_SERVICE = DRbObject.new_with_uri(ENV["COMMENT_SERVICE"])
+USER_SERVICE = DRbObject.new_with_uri(ENV["USER_SERVICE"])
 
-puts "Starting #{ENV['COMMENT_SERVICE']}"
-puts "Starting #{ENV['USER_SERVICE']}"
+puts "Starting #{ENV["COMMENT_SERVICE"]}"
+puts "Starting #{ENV["USER_SERVICE"]}"
 
 class User
   def comments
@@ -34,14 +34,14 @@ module TestAPI
   module Resolver
     def self.call(type, field, obj, args, ctx)
       case type.to_s
-      when 'User'
+      when "User"
         x = User.new
         if x.respond_to? field.name.to_sym
           x.public_send(field.name)
-        else 
+        else
           obj[field.name.to_sym]
         end
-      when 'Query'
+      when "Query"
         x = Query.new
         x.public_send(field.name)
       else

@@ -1,13 +1,14 @@
-require 'drb/drb'
+require "drb/drb"
 
-url="druby://0.0.0.0:8787"
+url = "druby://0.0.0.0:8787"
 
 class CommentService
   def get_comment(id)
-    {comment: "Comment {id} #{Time.now}"}
+    { comment: "Comment {id} #{Time.now}" }
   end
+
   def get_comments
-  	[{comment: "Comment {id} #{Time.now}"}]
+    [{ comment: "Comment {id} #{Time.now}" }]
   end
 end
 

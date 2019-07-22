@@ -3,4 +3,4 @@ gem "graphql"
 gem "sinatra"
 gem "rack-contrib"
 gem "sinatra-contrib"
-gem 'rack-graphiql'
+gem "rack-graphiql"
