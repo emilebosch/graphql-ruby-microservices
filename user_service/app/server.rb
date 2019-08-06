@@ -8,7 +8,7 @@ class UserService
   end
 
   def get_user(id)
-    return { name: "User {id} #{Time.now}" }
+    { name: "User {id} #{Time.now}" }
   end
 end
 
