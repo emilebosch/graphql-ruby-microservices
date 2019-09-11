@@ -8,11 +8,11 @@ require "benchmark"
 
 DRb.start_service
 
-COMMENT_SERVICE = DRbObject.new_with_uri(ENV["COMMENT_SERVICE"])
-USER_SERVICE = DRbObject.new_with_uri(ENV["USER_SERVICE"])
-
 puts "Starting #{ENV["COMMENT_SERVICE"]}"
+COMMENT_SERVICE = DRbObject.new_with_uri(ENV["COMMENT_SERVICE"])
+
 puts "Starting #{ENV["USER_SERVICE"]}"
+USER_SERVICE = DRbObject.new_with_uri(ENV["USER_SERVICE"])
 
 class User
   def comments
@@ -35,9 +35,9 @@ module TestAPI
     def self.call(type, field, obj, args, ctx)
       case type.to_s
       when "User"
-        x = User.new
-        if x.respond_to? field.name.to_sym
-          x.public_send(field.name)
+        user = User.new
+        if user.respond_to?(field.name.to_sym)
+          user.public_send(field.name)
         else
           obj[field.name.to_sym]
         end
@@ -45,9 +45,7 @@ module TestAPI
         x = Query.new
         x.public_send(field.name)
       else
-        if obj.is_a? Hash
-          return obj[field.name.to_sym]
-        end
+        return obj[field.name.to_sym] if obj.is_a?(Hash)
         obj.public_send(field.name)
       end
     rescue
