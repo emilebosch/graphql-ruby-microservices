@@ -2,11 +2,11 @@ require "drb/drb"
 
 class CommentService
   def get_comment(id)
-    { comment: "Comment #{id} #{Time.now}" }
+    { comment: "Pretty fancy comment #{id} #{Time.now}" }
   end
 
   def get_comments
-    [{ comment: "Comment #{Time.now}" }]
+    [{ comment: "Wow so nice #{Time.now}" }]
   end
 end
 

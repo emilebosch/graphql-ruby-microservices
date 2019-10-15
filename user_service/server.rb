@@ -2,7 +2,11 @@ require "drb/drb"
 
 class UserService
   def get_users
-    [{ name: "Emile" }, { name: "Chris" }, { name: "Karens" }]
+    [
+      { name: "Emile" },
+      { name: "Chris" },
+      { name: "Rene" },
+    ]
   end
 
   def get_user(id)
