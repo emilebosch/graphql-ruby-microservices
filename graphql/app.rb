@@ -2,9 +2,18 @@ require "sinatra/base"
 require "sinatra/json"
 require "graphql"
 require "yaml"
-
 require "drb/drb"
 require "benchmark"
+
+class String
+  def underscore
+    self.gsub(/::/, "/").
+      gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+      gsub(/([a-z\d])([A-Z])/, '\1_\2').
+      tr("-", "_").
+      downcase
+  end
+end
 
 DRb.start_service
 
@@ -30,6 +39,12 @@ class Query
   end
 end
 
+class Mutation
+  def create_user(name = "emile")
+    USER_SERVICE.create_user(name)
+  end
+end
+
 module TestAPI
   module Resolver
     def self.call(type, field, obj, args, ctx)
@@ -41,6 +56,9 @@ module TestAPI
         else
           obj[field.name.to_sym]
         end
+      when "Mutation"
+        x = Mutation.new
+        x.public_send(field.name.underscore)
       when "Query"
         x = Query.new
         x.public_send(field.name)

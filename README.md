@@ -27,7 +27,7 @@ Then query the api:
   users {
     name
     comments {
-      comment
+      text
     }
   }
 }

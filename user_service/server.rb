@@ -1,16 +1,26 @@
 require "drb/drb"
 
 class UserService
-  def get_users
-    [
+  def users
+    @user ||= [
       { name: "Emile" },
-      { name: "Chris" },
+      { name: "Wiebe" },
       { name: "Rene" },
     ]
   end
 
+  def get_users
+    users
+  end
+
+  def create_user(name)
+    new_user = { name: name }
+    users << new_user
+    new_user
+  end
+
   def get_user(id)
-    { name: "Emile #{id} #{Time.now}" }
+    users[id]
   end
 end
 
