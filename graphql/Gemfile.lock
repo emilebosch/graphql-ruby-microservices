@@ -14,7 +14,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
-    rack (2.0.6)
+    rack (2.0.8)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-graphiql (0.1.1)
