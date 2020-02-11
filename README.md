@@ -33,7 +33,7 @@ Then query the api:
 }
 ```
 
-This is the absolute minimal example. 
+This is the absolute minimal example.
 Things that you could added:
 
 - Batch loading
@@ -70,10 +70,15 @@ After thats put it back up:
 docker-compose start comment_service
 ```
 
+After all that:
+
+```
+docker-compose stop
+```
+
 Notes:
 
 - In case either the comment service dies. It should just return null. This allows for one of the services to go down and the frontend should just be able to deal with that by saying 'comments cant be loaded' instead of exploding on a non-null.
 - Services should be able to be added and scaled up, we can either add a bunch of connections to a connectionpool
 - You might not want to use Drb since it can be a bottleneck and can be quite unsafe. Maybe look at protobuf or another rpc layer.
 - Please microservice responsibly
-
