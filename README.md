@@ -14,7 +14,7 @@ All the services run in docker containers for easy building and deployment.
 
 To run the example:
 
-```
+```sh
 docker-compose build
 docker-compose up -d
 open http://localhost:9292/graphiql
@@ -66,13 +66,13 @@ You'll see that you can still query the users but not the comments. The graphql 
 
 After thats put it back up:
 
-```
+```sh
 docker-compose start comment_service
 ```
 
 After all that:
 
-```
+```sh
 docker-compose stop
 ```
 
