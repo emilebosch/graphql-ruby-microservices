@@ -1,3 +1,4 @@
+$stdout.sync = true
 require "sinatra/base"
 require "sinatra/json"
 require "graphql"
@@ -47,8 +48,10 @@ end
 
 module TestAPI
   module Resolver
-    def self.call(type, field, obj, args, ctx)
-      case type.to_s
+    def self.call(type = nil, field, obj, args, ctx)
+      field_name = field.name.to_s.underscore.to_sym
+
+      case ctx.parent_type.to_s
       when "User"
         user = User.new
         if user.respond_to?(field.name.to_sym)

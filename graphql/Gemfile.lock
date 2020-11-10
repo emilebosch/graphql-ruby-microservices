@@ -2,11 +2,11 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.16.1)
-    graphql (1.10.4)
+    graphql (1.9.12)
     multi_json (1.14.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-graphiql (0.1.1)
@@ -31,7 +31,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  graphql
+  graphql (= 1.9.12)
   rack-contrib
   rack-graphiql
   sinatra
